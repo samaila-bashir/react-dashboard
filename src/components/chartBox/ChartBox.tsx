@@ -12,23 +12,31 @@ type Props = {
   chartData: object[];
 };
 
-const ChartBox: React.FC<Props> = (props) => {
+const ChartBox: React.FC<Props> = ({
+  color,
+  icon,
+  title,
+  dataKey,
+  number,
+  percentage,
+  chartData,
+}) => {
   return (
     <div className="chartBox">
       <div className="boxInfo">
         <div className="title">
-          <img src={props.icon} alt="" />
-          <span>{props.title}</span>
+          <img src={icon} alt="" />
+          <span>{title}</span>
         </div>
-        <h1>{props.number}</h1>
-        <Link to="/" style={{ color: props.color }}>
+        <h1>{number}</h1>
+        <Link to="/" style={{ color: color }}>
           View all
         </Link>
       </div>
       <div className="chartInfo">
         <div className="chart">
           <ResponsiveContainer width="99%" height="100%">
-            <LineChart data={props.chartData}>
+            <LineChart data={chartData}>
               <Tooltip
                 contentStyle={{ background: "transparent", border: "none" }}
                 labelStyle={{ display: "none" }}
@@ -36,8 +44,8 @@ const ChartBox: React.FC<Props> = (props) => {
               />
               <Line
                 type="monotone"
-                dataKey={props.dataKey}
-                stroke={props.color}
+                dataKey={dataKey}
+                stroke={color}
                 strokeWidth={2}
                 dot={false}
               />
@@ -47,9 +55,9 @@ const ChartBox: React.FC<Props> = (props) => {
         <div className="texts">
           <div
             className="percentage"
-            style={{ color: props.percentage < 0 ? "tomato" : "limegreen" }}
+            style={{ color: percentage < 0 ? "tomato" : "limegreen" }}
           >
-            {props.percentage}%
+            {percentage}%
           </div>
           <div className="duration">this month</div>
         </div>
